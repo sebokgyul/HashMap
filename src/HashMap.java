@@ -55,6 +55,11 @@ public class HashMap {
     return "-";
   }
 
+  public void remove(String key) {
+    int index = (key.hashCode() & 0x7fffffff) % this.table.length;
+    table[index] = null;
+  }
+
   public void printMap() {
     for(int i = 0; i < this.table.length; i++) {
       Node current = table[i];

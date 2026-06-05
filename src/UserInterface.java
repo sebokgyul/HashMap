@@ -16,12 +16,13 @@ public class UserInterface {
       System.out.println();
       System.out.println("1. put");
       System.out.println("2. get");
-      System.out.println("3. list");
-      System.out.println("4. quit");
+      System.out.println("3. remove");
+      System.out.println("4. list");
+      System.out.println("5. quit");
       System.out.println();
       String command = scanner.nextLine();
 
-      if(command.equals("quit") || command.equals("4")) {
+      if(command.equals("quit") || command.equals("5")) {
         break;
       } else if(command.equals("put") || command.equals("1")) {
         System.out.println();
@@ -36,7 +37,11 @@ public class UserInterface {
         String key = scanner.nextLine();
         System.out.println(map.get(key));
         System.out.println();
-      } else if(command.equals("list") || command.equals("3")) {
+      } else if(command.equals("remove") || command.equals("3")) {
+        System.out.print("Enter a key: ");
+        String key = scanner.nextLine();
+        map.remove(key);
+      } else if(command.equals("list") || command.equals("4")) {
         map.printMap();
       }
     }
