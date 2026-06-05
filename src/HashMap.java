@@ -31,6 +31,7 @@ public class HashMap {
     while(current != null) {
       if(current.key.equals(key)) {
         current.value = value;
+        return;
       }
       current = current.next;
     }
@@ -38,7 +39,6 @@ public class HashMap {
     Node newNode = new Node(key, value);
     newNode.next = table[index];
     table[index] = newNode;
-
     this.mapSize++;
   }
 
