@@ -52,7 +52,7 @@ public class HashMap {
       }
       current = current.next;
     }
-    return "-";
+    return "----No such key----";
   }
 
   public void remove(String key) {
@@ -61,13 +61,18 @@ public class HashMap {
   }
 
   public void printMap() {
+    int numOfValues = 0;
     for(int i = 0; i < this.table.length; i++) {
       Node current = table[i];
 
       while(current != null) {
         System.out.println(current);
         current = current.next;
+        numOfValues++;
       }
+    }
+    if(numOfValues == 0) {
+      System.out.println("----The HashMap is empty!----");
     }
   }
 }
