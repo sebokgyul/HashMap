@@ -57,7 +57,22 @@ public class HashMap {
 
   public void remove(String key) {
     int index = (key.hashCode() & 0x7fffffff) % this.table.length;
-    table[index] = null;
+    Node current = table[index];
+    Node prev = null;
+
+    while(current != null) {
+      if (current.key.equals(key)) {
+        if (prev == null) {
+          table[index] = current.next;
+        } else {
+          prev.next = current.next;
+        }
+        this.mapSize--;
+        return;
+      }
+      prev = current;
+      current = current.next;
+    }
   }
 
   public void printMap() {
@@ -74,5 +89,9 @@ public class HashMap {
     if(numOfValues == 0) {
       System.out.println("----The HashMap is empty!----");
     }
+  }
+
+  public int getSize() {
+    return this.mapSize;
   }
 }
