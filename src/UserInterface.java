@@ -43,6 +43,9 @@ public class UserInterface {
         map.remove(key);
       } else if(command.equals("list") || command.equals("4")) {
         map.printMap();
+      } else {
+        System.out.println("Invalid input, try again!");
+        continue;
       }
     }
   }
