@@ -2,6 +2,7 @@ public class HashMap {
 
   private Node[] table;
   private int mapSize;
+  private static final double LOAD_FACTOR = 0.75;
 
   public HashMap() {
     this.table = new Node[8];
@@ -25,7 +26,6 @@ public class HashMap {
 
   public void put(String key, String value) {
     int index = (key.hashCode() & 0x7fffffff) % this.table.length;
-
     Node current = table[index];
 
     while(current != null) {
@@ -34,6 +34,9 @@ public class HashMap {
         return;
       }
       current = current.next;
+    }
+    if((double) this.mapSize / this.table.length > LOAD_FACTOR) {
+      resize();
     }
 
     Node newNode = new Node(key, value);
@@ -72,6 +75,20 @@ public class HashMap {
       }
       prev = current;
       current = current.next;
+    }
+  }
+
+  public void resize() {
+    Node[] oldTable = this.table;
+    this.table = new Node[oldTable.length * 2];
+    this.mapSize = 0;
+
+    for(Node head : oldTable) {
+      Node current = head;
+      while(current != null) {
+        put(current.key, current.value);
+        current = current.next;
+      }
     }
   }
 
