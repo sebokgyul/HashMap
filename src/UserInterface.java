@@ -21,18 +21,17 @@ public class UserInterface {
       System.out.println("5. quit");
       System.out.println();
       String command = scanner.nextLine();
+      System.out.println();
 
       if(command.equals("quit") || command.equals("5")) {
         break;
       } else if(command.equals("put") || command.equals("1")) {
-        System.out.println();
         System.out.print("Enter a String to put: ");
         String value = scanner.nextLine();
         System.out.print("Enter a key for the String: ");
         String key = scanner.nextLine();
         map.put(key, value);
       } else if(command.equals("get") || command.equals("2")) {
-        System.out.println();
         System.out.print("Enter the key: ");
         String key = scanner.nextLine();
         System.out.println(map.get(key));
